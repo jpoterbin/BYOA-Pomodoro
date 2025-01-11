@@ -158,4 +158,8 @@ body.dark-mode {
 .dark-mode #darkModeToggle:hover {
     background: #00FF00;
     color: #000000;
+}
+
+#themeToggle i {
+    font-size: 1.2rem;
 } 

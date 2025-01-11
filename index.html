@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,7 +13,7 @@
         <h1>Pomodoro Timer</h1>
         <div id="toggleContainer">
             <button id="toggleMode">Switch to Rest</button>
-            <button id="darkModeToggle">Dark Mode</button>
+            <button id="themeToggle"><i class="fas fa-moon"></i></button>
         </div>
         <div class="timer">
             <span id="minutes">25</span>:<span id="seconds">00</span>
@@ -23,7 +24,7 @@
             <button id="reset">Reset</button>
         </div>
         <div class="mode">
-            <span id="mode-text">Work Time</span>
+            <span id="mode-text">Work Time!</span>
         </div>
     </div>
     <script src="script.js"></script>
