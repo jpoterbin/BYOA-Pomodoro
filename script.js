@@ -57,7 +57,7 @@ function resetTimer() {
     clearInterval(timerId);
     timerId = null;
     timeLeft = isWorkMode ? REST_TIME : WORK_TIME;
-    modeText.textContent = isWorkMode ? 'Rest Time' : 'Work Time';
+    modeText.textContent = isWorkMode ? 'Rest Time' : 'Work Time!';
     updateDisplay();
 }
 
@@ -68,7 +68,7 @@ toggleButton.addEventListener('click', function() {
     this.textContent = isWorkMode ? 'Switch to Work' : 'Switch to Rest';
     
     // Update mode text
-    document.getElementById('mode-text').textContent = isWorkMode ? 'Rest Time' : 'Work Time';
+    document.getElementById('mode-text').textContent = isWorkMode ? 'Rest Time' : 'Work Time!';
     
     // Update timer display and internal state
     timeLeft = isWorkMode ? REST_TIME : WORK_TIME;
