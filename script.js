@@ -29,7 +29,7 @@ function switchMode() {
     isWorkMode = !isWorkMode;
     timeLeft = isWorkMode ? WORK_TIME : REST_TIME;
     updateDisplay();
-    document.querySelector('.mode').textContent = isWorkMode ? 'Work Time!' : 'Rest Time!';
+    document.querySelector('.mode').textContent = isWorkMode ? 'Time to focus.' : 'Time to rest.';
 }
 
 function toggleTimer() {
@@ -105,4 +105,4 @@ setTheme(savedTheme);
 // Make sure the initial mode is set to work
 isWorkMode = true;
 timeLeft = WORK_TIME;
-document.querySelector('.mode').textContent = 'Work Time!'; 
+document.querySelector('.mode').textContent = 'Time to focus.'; 
