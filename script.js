@@ -11,6 +11,7 @@ const resetButton = document.getElementById('reset');
 const modeText = document.getElementById('mode-text');
 const toggleButton = document.getElementById('toggleMode');
 const themeToggle = document.getElementById('themeToggle');
+const startPauseButton = document.getElementById('startPause');
 
 const WORK_TIME = 25 * 60; // 25 minutes in seconds
 const BREAK_TIME = 5 * 60; // 5 minutes in seconds
@@ -31,65 +32,49 @@ function switchMode() {
     updateDisplay();
 }
 
-function startTimer() {
+function toggleTimer() {
     if (timerId === null) {
         if (timeLeft === undefined) {
-            timeLeft = isWorkMode ? REST_TIME : WORK_TIME;
+            timeLeft = isWorkMode ? WORK_TIME : REST_TIME;
         }
         timerId = setInterval(() => {
             timeLeft--;
             updateDisplay();
             
             if (timeLeft === 0) {
-                alarmSound.play();  // Play the alarm sound
+                alarmSound.play();
                 clearInterval(timerId);
                 timerId = null;
+                startPauseButton.textContent = 'Start';
             }
         }, 1000);
+        startPauseButton.textContent = 'Pause';
+    } else {
+        clearInterval(timerId);
+        timerId = null;
+        startPauseButton.textContent = 'Start';
     }
 }
 
-function pauseTimer() {
-    clearInterval(timerId);
-    timerId = null;
-}
-
-function resetTimer() {
-    clearInterval(timerId);
-    timerId = null;
-    timeLeft = isWorkMode ? REST_TIME : WORK_TIME;
-    modeText.textContent = isWorkMode ? 'Rest Time' : 'Work Time!';
-    updateDisplay();
-}
-
-toggleButton.addEventListener('click', function() {
-    isWorkMode = this.textContent === 'Switch to Rest';
-    
-    // Update button text
-    this.textContent = isWorkMode ? 'Switch to Work' : 'Switch to Rest';
-    
-    // Update mode text
-    document.getElementById('mode-text').textContent = isWorkMode ? 'Rest Time' : 'Work Time!';
-    
-    // Update timer display and internal state
-    timeLeft = isWorkMode ? REST_TIME : WORK_TIME;
-    updateDisplay();
-});
-
-// Update the reset functionality to respect the current mode
 function reset() {
     clearInterval(timerId);
     timerId = null;
     timeLeft = isWorkMode ? WORK_TIME : REST_TIME;
     updateDisplay();
+    startPauseButton.textContent = 'Start';
 }
 
-startButton.addEventListener('click', startTimer);
-pauseButton.addEventListener('click', pauseTimer);
-resetButton.addEventListener('click', resetTimer);
+toggleButton.addEventListener('click', () => {
+    isWorkMode = !isWorkMode;
+    toggleButton.textContent = isWorkMode ? 'Rest Mode' : 'Work Mode';
+    reset();  // This resets the timer when switching modes
+});
+
+startPauseButton.addEventListener('click', toggleTimer);
+resetButton.addEventListener('click', reset);
 
 // Initialize the display
-resetTimer(); 
+reset(); 
 
 function setTheme(theme) {
     if (theme === 'dark') {
