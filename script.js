@@ -9,9 +9,9 @@ const startButton = document.getElementById('start');
 const pauseButton = document.getElementById('pause');
 const resetButton = document.getElementById('reset');
 const modeText = document.getElementById('mode-text');
-const toggleButton = document.getElementById('toggleMode');
 const themeToggle = document.getElementById('themeToggle');
 const startPauseButton = document.getElementById('startPause');
+const addFiveButton = document.getElementById('addFive');
 
 const WORK_TIME = 25 * 60; // 25 minutes in seconds
 const BREAK_TIME = 5 * 60; // 5 minutes in seconds
@@ -26,16 +26,16 @@ function updateDisplay() {
 }
 
 function switchMode() {
-    isWorkTime = !isWorkTime;
-    timeLeft = isWorkTime ? WORK_TIME : BREAK_TIME;
-    modeText.textContent = isWorkTime ? 'Work Time' : 'Break Time';
+    isWorkMode = !isWorkMode;
+    timeLeft = isWorkMode ? WORK_TIME : REST_TIME;
     updateDisplay();
+    document.querySelector('.mode').textContent = isWorkMode ? 'Work Time!' : 'Rest Time!';
 }
 
 function toggleTimer() {
     if (timerId === null) {
         if (timeLeft === undefined) {
-            timeLeft = isWorkMode ? WORK_TIME : REST_TIME;
+            timeLeft = WORK_TIME;
         }
         timerId = setInterval(() => {
             timeLeft--;
@@ -46,6 +46,7 @@ function toggleTimer() {
                 clearInterval(timerId);
                 timerId = null;
                 startPauseButton.textContent = 'Start';
+                switchMode();
             }
         }, 1000);
         startPauseButton.textContent = 'Pause';
@@ -64,14 +65,14 @@ function reset() {
     startPauseButton.textContent = 'Start';
 }
 
-toggleButton.addEventListener('click', () => {
-    isWorkMode = !isWorkMode;
-    toggleButton.textContent = isWorkMode ? 'Rest Mode' : 'Work Mode';
-    reset();  // This resets the timer when switching modes
-});
+function addFiveMinutes() {
+    timeLeft += 5 * 60; // Add 5 minutes (300 seconds)
+    updateDisplay();
+}
 
 startPauseButton.addEventListener('click', toggleTimer);
 resetButton.addEventListener('click', reset);
+addFiveButton.addEventListener('click', addFiveMinutes);
 
 // Initialize the display
 reset(); 
@@ -100,3 +101,8 @@ themeToggle.addEventListener('click', () => {
 // Set initial theme
 const savedTheme = localStorage.getItem('theme') || 'light';
 setTheme(savedTheme); 
+
+// Make sure the initial mode is set to work
+isWorkMode = true;
+timeLeft = WORK_TIME;
+document.querySelector('.mode').textContent = 'Work Time!'; 
