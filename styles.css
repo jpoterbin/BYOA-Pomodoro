@@ -1,0 +1,161 @@
+/* 80s-inspired color scheme and styling */
+body {
+    background: #0000AA;  /* Classic IBM blue */
+    color: #FFFFFF;
+    font-family: "Press Start 2P", "Courier New", monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #0000AA;  /* Same blue as background */
+    border: 2px solid #FFFFFF;
+    text-align: center;
+    box-shadow: none;
+}
+
+h1 {
+    color: #FFFFFF;
+    text-shadow: none;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    border-bottom: none;
+    padding-bottom: 1rem;
+}
+
+.timer {
+    font-size: 3.5rem;
+    margin: 2rem 0;
+    color: #FFFFFF;
+    text-shadow: none;
+}
+
+.controls button {
+    background: #0000AA;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    padding: 0.8rem 1.5rem;
+    margin: 0.5rem;
+    font-family: "Press Start 2P", "Courier New", monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.controls button:hover {
+    background: #FFFFFF;
+    color: #0000AA;
+    box-shadow: none;
+    transform: none;
+}
+
+.mode {
+    margin-top: 2rem;
+    font-size: 1rem;
+    color: #FFFFFF;
+    text-shadow: none;
+}
+
+/* Blinking cursor effect */
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.timer::after {
+    content: "_";
+    animation: blink 1s infinite;
+    margin-left: 5px;
+}
+
+#toggleContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+#toggleMode {
+    background: #0000AA;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    padding: 0.8rem 1.5rem;
+    font-family: "Press Start 2P", "Courier New", monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#toggleMode:hover {
+    background: #FFFFFF;
+    color: #0000AA;
+}
+
+/* Add these new dark mode styles */
+body.dark-mode {
+    background: #000000;  /* Dark background */
+    color: #00FF00;  /* Matrix-style green */
+}
+
+.dark-mode .container {
+    background: #000000;
+    border: 2px solid #00FF00;
+}
+
+.dark-mode h1,
+.dark-mode .timer,
+.dark-mode .mode {
+    color: #00FF00;
+}
+
+.dark-mode .controls button,
+.dark-mode #toggleMode {
+    background: #000000;
+    color: #00FF00;
+    border: 1px solid #00FF00;
+}
+
+.dark-mode .controls button:hover,
+.dark-mode #toggleMode:hover {
+    background: #00FF00;
+    color: #000000;
+}
+
+.dark-mode #toggleContainer {
+    border-top: 1px solid #00FF00;
+    border-bottom: 1px solid #00FF00;
+}
+
+/* Dark mode toggle button styles */
+#darkModeToggle {
+    position: static;
+    background: #0000AA;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    padding: 0.8rem 1.5rem;
+    font-family: "Press Start 2P", "Courier New", monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+#darkModeToggle:hover {
+    background: #FFFFFF;
+    color: #0000AA;
+}
+
+.dark-mode #darkModeToggle {
+    background: #000000;
+    color: #00FF00;
+    border: 1px solid #00FF00;
+}
+
+.dark-mode #darkModeToggle:hover {
+    background: #00FF00;
+    color: #000000;
+} 
