@@ -116,13 +116,14 @@ timeLeft = WORK_TIME;
 document.querySelector('.mode').textContent = 'Time to focus.'; 
 
 function showTaskInput() {
+    console.log('Add task button clicked');
     const task = prompt('Enter your task:', currentTask || '');
     if (task) {
+        console.log('Task entered:', task);
         currentTask = task;
         taskText.textContent = task;
         emptyState.style.display = 'none';
         taskDisplay.style.display = 'block';
-        // Save to localStorage
         localStorage.setItem('pomodoroTask', task);
     }
 }
@@ -151,3 +152,6 @@ window.addEventListener('DOMContentLoaded', () => {
         taskDisplay.style.display = 'block';
     }
 }); 
+
+// Verify the button is found
+console.log('Add Task button element:', addTaskBtn); 
