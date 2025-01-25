@@ -154,4 +154,54 @@ button:hover {
     button {
         width: 100%;
     }
+}
+
+.task-container {
+    margin-bottom: 2rem;
+}
+
+.empty-state {
+    padding: 1rem;
+}
+
+.secondary-button {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.5rem 1rem;
+}
+
+.secondary-button:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.task-display {
+    padding: 1rem;
+    background-color: rgba(99, 91, 255, 0.1);
+    border-radius: 8px;
+    margin: 0.5rem 0;
+}
+
+.task-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.icon-button:hover {
+    background-color: rgba(99, 91, 255, 0.1);
+}
+
+.task-actions {
+    display: flex;
+    gap: 0.5rem;
 } 

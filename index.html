@@ -14,6 +14,20 @@
             <button id="themeToggle"><i class="fas fa-moon"></i></button>
         </div>
         <h1>Pomodoro Timer</h1>
+        <div class="task-container">
+            <div id="emptyState" class="empty-state">
+                <button id="addTaskBtn" class="secondary-button">+ Add Task</button>
+            </div>
+            <div id="taskDisplay" class="task-display" style="display: none;">
+                <div class="task-content">
+                    <span id="taskText"></span>
+                    <div class="task-actions">
+                        <button id="editTask" class="icon-button"><i class="fas fa-edit"></i></button>
+                        <button id="deleteTask" class="icon-button"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="timer">
             <span id="minutes">25</span>:<span id="seconds">00</span>
         </div>

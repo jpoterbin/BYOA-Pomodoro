@@ -12,11 +12,19 @@ const modeText = document.getElementById('mode-text');
 const themeToggle = document.getElementById('themeToggle');
 const startPauseButton = document.getElementById('startPause');
 const addFiveButton = document.getElementById('addFive');
+const addTaskBtn = document.getElementById('addTaskBtn');
+const emptyState = document.getElementById('emptyState');
+const taskDisplay = document.getElementById('taskDisplay');
+const taskText = document.getElementById('taskText');
+const editTaskBtn = document.getElementById('editTask');
+const deleteTaskBtn = document.getElementById('deleteTask');
 
 const WORK_TIME = 25 * 60; // 25 minutes in seconds
 const BREAK_TIME = 5 * 60; // 5 minutes in seconds
 const REST_TIME = 5 * 60;  // 5 minutes in seconds
 const alarmSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3'); // You can change this URL to any audio file you prefer
+
+let currentTask = '';
 
 function updateDisplay() {
     const minutes = Math.floor(timeLeft / 60);
@@ -106,3 +114,40 @@ setTheme(savedTheme);
 isWorkMode = true;
 timeLeft = WORK_TIME;
 document.querySelector('.mode').textContent = 'Time to focus.'; 
+
+function showTaskInput() {
+    const task = prompt('Enter your task:', currentTask || '');
+    if (task) {
+        currentTask = task;
+        taskText.textContent = task;
+        emptyState.style.display = 'none';
+        taskDisplay.style.display = 'block';
+        // Save to localStorage
+        localStorage.setItem('pomodoroTask', task);
+    }
+}
+
+function deleteTask() {
+    currentTask = '';
+    taskText.textContent = '';
+    emptyState.style.display = 'block';
+    taskDisplay.style.display = 'none';
+    // Remove from localStorage
+    localStorage.removeItem('pomodoroTask');
+}
+
+// Add event listeners
+addTaskBtn.addEventListener('click', showTaskInput);
+editTaskBtn.addEventListener('click', showTaskInput);
+deleteTaskBtn.addEventListener('click', deleteTask);
+
+// Load saved task on page load
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTask = localStorage.getItem('pomodoroTask');
+    if (savedTask) {
+        currentTask = savedTask;
+        taskText.textContent = savedTask;
+        emptyState.style.display = 'none';
+        taskDisplay.style.display = 'block';
+    }
+}); 
